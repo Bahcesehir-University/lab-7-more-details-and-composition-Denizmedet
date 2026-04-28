@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 
 // ============================================================
 // CLASS DEFINITIONS
@@ -44,10 +45,10 @@ public:
         : topLeft(x1, y1), bottomRight(x2, y2) {}  // stub — fix initializer
 
     // TODO 7: const getWidth()
-    double getWidth() const { return bottomRight.x - topLeft.x; }  // stub
+    double getWidth() const { return std::abs (bottomRight.x - topLeft.x); }  // stub
 
     // TODO 8: const getHeight()
-    double getHeight() const { return topLeft.y - bottomRight.y; }  // stub
+    double getHeight() const { return std::abs (topLeft.y - bottomRight.y); }  // stub
 
     // TODO 9: const getArea()
     double getArea() const { return getWidth() * getHeight(); }  // stub
@@ -55,7 +56,7 @@ public:
     // TODO 10: const display()
     void display() const {
         std::cout << "Top Left:";
-        topLeft:display();
+        topLeft.display();
         std::cout << "\nBottomRight: ";
         bottomRight.display();
         std::cout << "\nWidth: " << getWidth()
@@ -65,7 +66,7 @@ public:
     }
 
     // TODO 11: declare isSameSize as friend function
-    friend bool isSameSize(const Rectangle& r1, const Rectangle r2);
+    friend bool isSameSize(const Rectangle& r1, const Rectangle& r2);
 };
 
 
@@ -101,5 +102,19 @@ public:
 int main() {
     // TODO 17-21: demo code
     std::cout << "Complete the TODOs above!" << std::endl;
+    Rectangle rect1(0,0,4,3);
+    Rectangle rect2(1,1,4,4);
+    
+    
+    std::cout << "\nRect1: \n"; rect1.display();
+    std::cout << "\nRect2: \n"; rect2.display();
+    std::cout << "\nSame Size? " << (isSameSize(rect1,rect2) ? "Yes" : "No") << "\n";
+    const ConstDemo cd1(7);
+    std::cout << "const object value : " << cd1.getValue() << "\n";
+    std::cout << "const object doubled : " << cd1.constGetDouble() << "\n";
+    ConstDemo cd2(5);
+    cd2.doubleValue();
+    std::cout << "non-const object after doubleValue : " << cd2.getValue() << "\n";
+    
     return 0;
 }
